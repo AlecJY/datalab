@@ -111,7 +111,9 @@ NOTES:
  */
 int absVal(int x)
 {
-    return 42;
+    unsigned int *xptr = (unsigned int *) &x;
+    int sbit = *xptr >> 31;
+    return (x ^ (~(sbit) + 1)) + sbit;
 }
 
 /*
