@@ -362,7 +362,9 @@ int byteSwap(int x, int n, int m)
  */
 int conditional(int x, int y, int z)
 {
-    return 42;
+    int res = !x;
+    int mask = ~res + 1;
+    return (y & ~mask) | (z & mask);
 }
 
 /*
