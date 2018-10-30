@@ -253,7 +253,11 @@ int bitCount(int x)
  */
 int bitMask(int highbit, int lowbit)
 {
-    return 42;
+    int diff = highbit + ~lowbit + 1;
+    int udiff = (diff >> 30 >> 1) ^ diff;
+    int mask = ~(~0 << udiff << 1);
+    mask <<= lowbit;
+    return mask & ~(diff >> 30 >> 1);
 }
 
 /*
