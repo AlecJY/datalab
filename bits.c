@@ -111,9 +111,8 @@ NOTES:
  */
 int absVal(int x)
 {
-    unsigned int *xptr = (unsigned int *) &x;
-    int sbit = *xptr >> 31;
-    return (x ^ (~(sbit) + 1)) + sbit;
+    int s = x >> 30 >> 1;
+    return (x ^ s) + (~s + 1);
 }
 
 /*
@@ -126,13 +125,11 @@ int absVal(int x)
  */
 int addOK(int x, int y)
 {
-    unsigned int *xptr = (unsigned int *) &x;
-    unsigned int *yptr = (unsigned int *) &y;
-    unsigned int sum = *xptr + *yptr;
-    int xs = *xptr >> 31;
-    int ys = *yptr >> 31;
-    int ss = sum >> 31;
-    return (xs ^ ys) | (~(xs ^ ss) & 1);
+    int sum = x + y;
+    int xs = x >> 30 >> 1;
+    int ys = y >> 30 >> 1;
+    int ss = sum >> 30 >> 1;
+    return ((xs ^ ys) | ~(xs ^ ss)) & 1;
 }
 
 /*
