@@ -486,7 +486,10 @@ int fitsBits(int x, int n)
  */
 int fitsShort(int x)
 {
-    return 42;
+    int s = x >> 30 >> 1;
+    x = x ^ s;
+    x >>= 15;
+    return !x;
 }
 
 /*
