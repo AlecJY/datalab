@@ -473,7 +473,7 @@ int fitsBits(int x, int n)
     x = x ^ s;
     n += ~0;
     x >>= n;
-    return !(x ^ 0);
+    return !x;
 }
 
 /*
