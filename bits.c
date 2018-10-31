@@ -451,7 +451,11 @@ int evenBits(void)
  */
 int ezThreeFourths(int x)
 {
-    return 42;
+    x += x << 1;
+    int s = x >> 30 >> 1;
+    int round = !!(x & 0b11);
+    x >>= 2;
+    return x + (round & s);
 }
 
 /*
